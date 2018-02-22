@@ -18,11 +18,18 @@ class App extends Component {
     };
   }
 
+  updateExcerciseCount = exercise => {
+    console.log(exercise.name);
+    console.log(this.state);
+  };
+
   render() {
     const { exercises } = this.state;
 
     const potentialExercises = (exercises || []).map(exercise => {
-      return <Counter exercise={exercise} />;
+      return (
+        <Counter exercise={exercise} updater={this.updateExcerciseCount} />
+      );
     });
 
     return (

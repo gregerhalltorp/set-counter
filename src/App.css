@@ -14,3 +14,7 @@
   border-radius: 60px;
   font-size: 24px;
 }
+
+.sc-counter__button:hover {
+  cursor: pointer;
+}
