@@ -24,3 +24,13 @@
 .sc-counter__button:hover {
   cursor: pointer;
 }
+
+.oh-so-hidden {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.oh-so-hidden:hover {
+  cursor: pointer;
+}
