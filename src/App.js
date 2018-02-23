@@ -7,20 +7,23 @@ class App extends Component {
   constructor(props, context) {
     super(props, context);
 
+    const exercises = (window.localStorage &&
+      window.localStorage.getItem("exercises")) || [
+      {
+        id: 0,
+        name: "Armhävningar",
+        sets: [],
+        reps: 25,
+        lastUpdated: new Date()
+      }
+    ];
+
     this.state = {
-      exercises: [
-        {
-          id: 0,
-          name: "Armhävningar",
-          sets: 0,
-          reps: 25
-        }
-      ]
+      exercises
     };
   }
 
   updateExcerciseCount = exercise => () => {
-    console.log(exercise.name);
     const exI = this.state.exercises.findIndex(e => e.id === exercise.id);
     const newEx = { ...this.state.exercises[exI] };
     newEx.sets++;

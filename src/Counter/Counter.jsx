@@ -1,9 +1,20 @@
 import React from "react";
 
+const selectSetsRepsDoneToday = sets => {
+  const todayString = new Date().toLocaleDateString();
+  return sets
+    .filter(set => set.date.toLocaleDateString() === todayString)
+    .reduce((acc, cur) => ({ sets: acc.sets++, reps: acc.reps + cur.reps }), {
+      sets: 0,
+      reps: 0
+    });
+};
+
 const Counter = ({ exercise, updater }) => {
   const { reps, name, sets } = exercise;
 
-  const setsRepsDone = `${sets} sets / ${sets * reps} reps done`;
+  const todaysValues = selectSetsRepsDoneToday(sets);
+  const setsRepsDone = `${todaysValues.sets} sets / ${todaysValues.reps} reps done`;
 
   return (
     <div className="sc-counter">
