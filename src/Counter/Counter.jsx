@@ -1,7 +1,6 @@
 import React from 'react';
 
 const selectSetsRepsDoneToday = sets => {
-  console.log(sets);
   const todayString = new Date().toLocaleDateString();
   return sets
     .filter(set => set.date.toLocaleDateString() === todayString)
