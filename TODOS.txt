@@ -1,0 +1,10 @@
+0. ESLINT!
+1. Actioncreators + actions
+2. Reselect (move that logic there)
+3. Load localStorage, put that in store
+4. Experiment with firebase
+5. Sign in and fetch from firebase. Promise not so bad (allows first render then second)
+6. Sagas
+7. Firebase Auth
+8. Features
+
