@@ -1,0 +1,3 @@
+export const APP_DATA_LOADED = 'APP_DATA_LOADED';
+export const CLEAR_STORAGE = 'CLEAR_STORAGE';
+export const UPDATE_EXERCISE = 'UPDATE_EXERCISE';

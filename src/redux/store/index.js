@@ -2,8 +2,8 @@ import { createStore } from 'redux';
 
 import rootReducer from '../reducers';
 
-const makeStore = (initialState = {}) => {
-  const store = createStore(rootReducer);
+const makeStore = (fastLoadedState = {}) => {
+  const store = createStore(rootReducer, fastLoadedState);
   return store;
 };
 

@@ -1,10 +1,11 @@
-0. ESLINT!
-1. Actioncreators + actions
-2. Reselect (move that logic there)
-3. Load localStorage, put that in store
-4. Experiment with firebase
-5. Sign in and fetch from firebase. Promise not so bad (allows first render then second)
-6. Sagas
-7. Firebase Auth
-8. Features
+[X] 0. ESLINT!
+[X] 1. Actioncreators + actions
+[X] 2. Load localStorage, put that in store
+[ ] 3. How to do the storage side effect?
+[ ] 4. Reselect (move that logic there)
+[ ] 5. Experiment with firebase
+[ ] 6. Sign in and fetch from firebase. Promise not so bad (allows first render then second)
+[ ] 7. Firebase Auth
+[ ] 8. Sagas
+[ ] 9. Features
 
