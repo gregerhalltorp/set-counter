@@ -10,6 +10,7 @@ import './index.css';
 import makeStore from './redux/store/';
 import App from './handlers/AppHandler.jsx';
 import registerServiceWorker from './registerServiceWorker';
+import { getLocalStorageState, saveStateToLocalStorage } from './utils/localStorage';
 
 // const config = {
 //   apiKey: 'AIzaSyAXIMRyEBxa_9F2pOI3bvdqTCaDogf0CSw',
@@ -30,38 +31,19 @@ async function signIn() {
   // }
 }
 
-const dateReviver = (key, value) => (~key.toLowerCase().indexOf('date') ? new Date(value) : value);
-
-const getLocalStorageData = () => {
-  const stoStateStr = window.localStorage && window.localStorage.getItem('setCounter');
-  if (stoStateStr) {
-    return { app: JSON.parse(stoStateStr, dateReviver) };
-  }
-
-  return {
-    app: {
-      exercises: [
-        {
-          id: 0,
-          name: 'Armhävningar',
-          sets: [],
-          reps: 25,
-          lastUpdatedDate: new Date(),
-        },
-      ],
-      lastUpdatedDate: new Date(),
-    },
-  };
-};
-
 async function renderApp() {
   await signIn();
 
   // Get a reference to the database service
   // const database = firebase.firestore();
 
-  const localData = getLocalStorageData();
+  const localData = getLocalStorageState();
   const store = makeStore(localData);
+
+  store.subscribe(() => {
+    saveStateToLocalStorage(store.getState());
+  });
+
   render(
     <Provider store={store}>
       <App />
