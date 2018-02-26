@@ -2,11 +2,15 @@
 [X] 1.  Actioncreators + actions
 [X] 2.  Load localStorage, put that in store
 [X] 3.  How to do the storage side effect?
-[ ] 4.  Rethink store, this is no good
-[ ] 5.  Reselect (move that logic there)
-[ ] 6.  Experiment with firebase
-[ ] 7.  Sign in and fetch from firebase. Promise not so bad (allows first render then second)
-[ ] 8.  Firebase Auth
-[ ] 9.  Sagas
-[ ] 10. Features
+[ ] 4.  Prop types
+[ ] 5.  Rethink store, this is no good
+[ ] 6.  Reselect (move that logic there)
+[ ] 7.  Experiment with firebase
+[ ] 8.  Sign in and fetch from firebase. Promise not so bad (allows first render then second)
+[ ] 9.  Firebase Auth
+[ ] 10.  Sagas
+[ ] 11. Features
+
+
+* ids: node-uuid (node-uuid.v4())
 

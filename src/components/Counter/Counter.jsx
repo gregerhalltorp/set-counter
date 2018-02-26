@@ -1,18 +1,16 @@
 import React from 'react';
 
-const selectSetsRepsDoneToday = sets => {
+const selectSetsRepsDoneToday = (sets) => {
   const todayString = new Date().toLocaleDateString();
-  return sets
-    .filter(set => set.date.toLocaleDateString() === todayString)
-    .reduce(
-      (acc, cur) => {
-        return { sets: ++acc.sets, reps: acc.reps + cur.reps };
-      },
-      {
-        sets: 0,
-        reps: 0,
-      }
-    );
+  return sets.filter(set => set.date.toLocaleDateString() === todayString).reduce(
+    (acc, cur) => {
+      return { sets: ++acc.sets, reps: acc.reps + cur.reps };
+    },
+    {
+      sets: 0,
+      reps: 0,
+    }
+  );
 };
 
 const Counter = ({ exercise, updater }) => {
@@ -20,9 +18,7 @@ const Counter = ({ exercise, updater }) => {
 
   const todaysValues = selectSetsRepsDoneToday(sets);
 
-  const setsRepsDone = `${todaysValues.sets} sets / ${
-    todaysValues.reps
-  } reps done`;
+  const setsRepsDone = `${todaysValues.sets} sets / ${todaysValues.reps} reps done`;
 
   return (
     <div>

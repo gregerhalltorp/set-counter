@@ -1,16 +1,14 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider } from 'react-redux';
 // import firebase from 'firebase/app';
 // import 'firebase/firestore';
 // import 'firebase/auth';
 
 import './index.css';
 import makeStore from './redux/store/';
-import App from './handlers/AppHandler.jsx';
+import Root from './components/Root.jsx';
 import registerServiceWorker from './registerServiceWorker';
-import { getLocalStorageState, saveStateToLocalStorage } from './utils/localStorage';
 
 // const config = {
 //   apiKey: 'AIzaSyAXIMRyEBxa_9F2pOI3bvdqTCaDogf0CSw',
@@ -37,19 +35,9 @@ async function renderApp() {
   // Get a reference to the database service
   // const database = firebase.firestore();
 
-  const localData = getLocalStorageState();
-  const store = makeStore(localData);
+  const store = makeStore();
 
-  store.subscribe(() => {
-    saveStateToLocalStorage(store.getState());
-  });
-
-  render(
-    <Provider store={store}>
-      <App />
-    </Provider>,
-    document.getElementById('root')
-  );
+  render(<Root store={store} />, document.getElementById('root'));
 
   registerServiceWorker();
 }
