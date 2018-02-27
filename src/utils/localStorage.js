@@ -9,7 +9,15 @@ export const getLocalStorageState = () => {
       return undefined;
     }
 
-    return { app: JSON.parse(stoStateStr, dateReviver) };
+    const state = JSON.parse(stoStateStr, dateReviver);
+    if (valueIn(state, 'exercises')) {
+      state.exercises.forEach((e) => {
+        delete e.lastUpdated;
+      });
+      delete state.lastUpdatedDate;
+    }
+
+    return state;
   } catch (err) {
     return undefined;
   }
@@ -17,7 +25,7 @@ export const getLocalStorageState = () => {
 
 export const saveStateToLocalStorage = (state) => {
   try {
-    const serializedState = JSON.stringify(valueIn(state, 'app'));
+    const serializedState = JSON.stringify(valueIn(state));
     localStorage.setItem('setCounter', serializedState);
   } catch (err) {
     // Do nothing for now

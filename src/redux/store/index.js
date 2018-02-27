@@ -7,8 +7,11 @@ const makeStore = () => {
   const localData = getLocalStorageState();
 
   const store = createStore(rootReducer, localData);
+  console.log(store.getState());
 
   store.subscribe(() => {
+    console.log(store.getState());
+
     saveStateToLocalStorage(store.getState());
   });
 

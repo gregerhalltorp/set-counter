@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 // import logo from '../logo.svg';
 import { updateExercise } from '../redux/actions';
-import { selectExercises } from '../redux/selectors/appSelectors';
+import { selectExercises } from '../redux/selectors/exercisesSelectors';
 import Counter from '../components/Counter/Counter.jsx';
 import './App.css';
 
