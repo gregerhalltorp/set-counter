@@ -9,7 +9,7 @@ import Counter from '../components/Counter/Counter.jsx';
 import './App.css';
 
 const propTypes = {
-  exercises: PropTypes.shape,
+  exercises: PropTypes.arrayOf(PropTypes.shape({})),
   dispatch: PropTypes.func.isRequired,
 };
 

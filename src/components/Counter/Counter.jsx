@@ -15,7 +15,7 @@ const selectSetsRepsDoneToday = (sets) => {
 };
 
 const propTypes = {
-  exercise: PropTypes.shape,
+  exercise: PropTypes.shape({}),
   updater: PropTypes.func.isRequired,
 };
 
