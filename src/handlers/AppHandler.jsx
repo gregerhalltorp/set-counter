@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // import logo from '../logo.svg';
@@ -6,6 +7,15 @@ import { updateExercise } from '../redux/actions';
 import { selectExercises } from '../redux/selectors/appSelectors';
 import Counter from '../components/Counter/Counter.jsx';
 import './App.css';
+
+const propTypes = {
+  exercises: PropTypes.shape,
+  dispatch: PropTypes.func.isRequired,
+};
+
+const defaultProps = {
+  exercises: [],
+};
 
 export const AppHandlerDumb = ({ exercises, dispatch }) => {
   const potentialExercises = (exercises || []).map((exercise) => {
@@ -22,6 +32,9 @@ export const AppHandlerDumb = ({ exercises, dispatch }) => {
     </div>
   );
 };
+
+AppHandlerDumb.defaultProps = defaultProps;
+AppHandlerDumb.propTypes = propTypes;
 
 // clearStorage = () => {
 //   // eslint-disable-next-line no-unused-expressions

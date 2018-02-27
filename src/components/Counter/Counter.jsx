@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const selectSetsRepsDoneToday = (sets) => {
   const todayString = new Date().toLocaleDateString();
@@ -13,7 +14,19 @@ const selectSetsRepsDoneToday = (sets) => {
   );
 };
 
+const propTypes = {
+  exercise: PropTypes.shape,
+  updater: PropTypes.func.isRequired,
+};
+
+const defaultProps = {
+  exercise: {},
+};
+
 const Counter = ({ exercise, updater }) => {
+  if (!exercise) {
+    return false;
+  }
   const { reps, name, sets } = exercise;
 
   const todaysValues = selectSetsRepsDoneToday(sets);
@@ -32,5 +45,8 @@ const Counter = ({ exercise, updater }) => {
     </div>
   );
 };
+
+Counter.propTypes = propTypes;
+Counter.defaultProps = defaultProps;
 
 export default Counter;
