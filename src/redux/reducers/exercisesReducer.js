@@ -1,16 +1,14 @@
 import * as ACTIONS from '../actions/actions';
 
-export const initialState = {
-  exercises: [
-    {
-      id: 0,
-      name: 'Armhävningar',
-      sets: [],
-      reps: 25,
-      lastUpdatedDate: new Date(),
-    },
-  ],
-};
+export const initialState = [
+  {
+    id: 0,
+    name: 'Armhävningar',
+    sets: [],
+    reps: 25,
+    lastUpdatedDate: new Date(),
+  },
+];
 
 const updateExerciseFunction = (state, action) => {
   const { exercise } = action.data;
