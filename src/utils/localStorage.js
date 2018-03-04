@@ -1,6 +1,28 @@
+import uuid from 'uuid/v4';
+
 import valueIn from '../utils/valueIn';
 
 const dateReviver = (key, value) => (~key.toLowerCase().indexOf('date') ? new Date(value) : value);
+
+// removeOldUpdatedDates = (exercises) => {
+// if (valueIn(state, 'exercises')) {
+//   state.exercises.forEach((e) => {
+//     delete e.lastUpdated;
+//   });
+//   delete state.lastUpdatedDate;
+// }
+// };
+
+const fixExerciseState = (exercises) => {
+  if (exercises.constructor !== Array) {
+    return exercises;
+  }
+
+  const excObj = {};
+  exercises.forEach((e) => {});
+  console.log(uuid());
+  return excObj;
+};
 
 export const getLocalStorageState = () => {
   try {
@@ -10,11 +32,9 @@ export const getLocalStorageState = () => {
     }
 
     const state = JSON.parse(stoStateStr, dateReviver);
-    if (valueIn(state, 'exercises')) {
-      state.exercises.forEach((e) => {
-        delete e.lastUpdated;
-      });
-      delete state.lastUpdatedDate;
+    const oldExercises = valueIn(state, 'exercises');
+    if (oldExercises) {
+      fixExerciseState(oldExercises);
     }
 
     return state;

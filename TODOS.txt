@@ -14,5 +14,29 @@
 [ ] 13. Features
 
 
+///////////////////////
+// Sync and data
+///////////////////////
+// 
+{
+  user: {
+    fields...
+    exercises: {
+      exerciseId: {
+        fields...
+        sets: {
+          setId: {
+            fields...
+          }
+        }
+      }
+    }
+  }
+}
+// Need to rethink data model for this. And must make a transition.
+
 * ids: node-uuid (node-uuid.v4())
+* toastr: start here: https://github.com/diegoddox/react-redux-toastr
+
+
 
