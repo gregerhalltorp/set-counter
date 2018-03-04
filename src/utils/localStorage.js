@@ -14,13 +14,30 @@ const dateReviver = (key, value) => (~key.toLowerCase().indexOf('date') ? new Da
 // };
 
 const fixExerciseState = (exercises) => {
+  if (!exercises) {
+    return null;
+  }
   if (exercises.constructor !== Array) {
     return exercises;
   }
 
   const excObj = {};
-  exercises.forEach((e) => {});
-  console.log(uuid());
+  exercises.forEach((e) => {
+    const newExercise = {};
+    Object.keys(e).forEach((key) => {
+      if (Object.prototype.hasOwnProperty.call(e, key)) {
+        if (key !== 'sets' && key !== 'id') {
+          newExercise[key] = e[key];
+        }
+      }
+    });
+    newExercise.sets = {};
+    e.sets.forEach((set) => {
+      newExercise.sets[uuid()] = set;
+    });
+
+    excObj[uuid()] = newExercise;
+  });
   return excObj;
 };
 
@@ -33,11 +50,9 @@ export const getLocalStorageState = () => {
 
     const state = JSON.parse(stoStateStr, dateReviver);
     const oldExercises = valueIn(state, 'exercises');
-    if (oldExercises) {
-      fixExerciseState(oldExercises);
-    }
+    const exercises = fixExerciseState(oldExercises);
 
-    return state;
+    return { ...state, exercises };
   } catch (err) {
     return undefined;
   }

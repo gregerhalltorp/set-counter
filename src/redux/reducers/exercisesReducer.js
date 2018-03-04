@@ -1,33 +1,25 @@
-import * as ACTIONS from '../actions/actions';
+import uuid from 'uuid/v4';
 
-export const initialState = [
-  {
-    id: 0,
+import * as ACTIONS from '../actions/actions';
+import { dateReviver } from '../../utils';
+
+export const initialState = {
+  [uuid()]: {
     name: 'Armhävningar',
-    sets: [],
+    sets: {},
     reps: 25,
     lastUpdatedDate: new Date(),
   },
-];
+};
 
 const updateExerciseFunction = (state, action) => {
-  const { exercise } = action.data;
-  if (!exercise) {
+  const { exerciseId } = action.data;
+  if (!exerciseId) {
     return state;
   }
-  const exI = state.findIndex(e => e.id === exercise.id);
-  const newState = state.map((item, index) => {
-    if (index !== exI) {
-      return item;
-    }
-    const sets = item.sets.slice();
-    sets.push({ reps: exercise.reps, date: new Date() });
-    return {
-      ...item,
-      sets,
-      lastUpdatedDate: new Date(),
-    };
-  });
+  const newState = JSON.parse(JSON.stringify(state), dateReviver);
+  const exercise = newState[exerciseId];
+  exercise.sets[uuid()] = { reps: exercise.reps, date: new Date() };
   return newState;
 };
 

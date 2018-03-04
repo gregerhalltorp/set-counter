@@ -3,15 +3,26 @@ import PropTypes from 'prop-types';
 
 const selectSetsRepsDoneToday = (sets) => {
   const todayString = new Date().toLocaleDateString();
-  return sets.filter(set => set.date.toLocaleDateString() === todayString).reduce(
-    (acc, cur) => {
-      return { sets: ++acc.sets, reps: acc.reps + cur.reps };
-    },
-    {
-      sets: 0,
-      reps: 0,
-    }
-  );
+  return Object.keys(sets)
+    .filter(setId => sets[setId].date.toLocaleDateString() === todayString)
+    .reduce(
+      (acc, cur) => {
+        return { sets: ++acc.sets, reps: acc.reps + sets[cur].reps };
+      },
+      {
+        sets: 0,
+        reps: 0,
+      }
+    );
+  // return sets.filter(set => set.date.toLocaleDateString() === todayString).reduce(
+  //   (acc, cur) => {
+  //     return { sets: ++acc.sets, reps: acc.reps + cur.reps };
+  //   },
+  //   {
+  //     sets: 0,
+  //     reps: 0,
+  //   }
+  // );
 };
 
 const propTypes = {

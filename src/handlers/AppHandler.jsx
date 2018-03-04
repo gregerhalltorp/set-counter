@@ -9,7 +9,7 @@ import Counter from '../components/Counter/Counter.jsx';
 import './App.css';
 
 const propTypes = {
-  exercises: PropTypes.arrayOf(PropTypes.shape({})),
+  exercises: PropTypes.shape({}),
   dispatch: PropTypes.func.isRequired,
 };
 
@@ -18,9 +18,9 @@ const defaultProps = {
 };
 
 export const AppHandlerDumb = ({ exercises, dispatch }) => {
-  const potentialExercises = (exercises || []).map((exercise) => {
-    const onUpdateClick = () => dispatch(updateExercise({ exercise }));
-    return <Counter key={exercise.name} exercise={exercise} updater={onUpdateClick} />;
+  const potentialExercises = (Object.keys(exercises) || []).map((exerciseId) => {
+    const onUpdateClick = () => dispatch(updateExercise({ exerciseId }));
+    return <Counter key={exerciseId} exercise={exercises[exerciseId]} updater={onUpdateClick} />;
   });
 
   return (

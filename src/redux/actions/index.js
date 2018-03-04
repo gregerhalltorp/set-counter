@@ -9,4 +9,4 @@ export const appDataLoaded = createAction(ACTIONS.APP_DATA_LOADED, {
 });
 
 export const clearStorage = createAction(ACTIONS.CLEAR_STORAGE, {});
-export const updateExercise = createAction(ACTIONS.UPDATE_EXERCISE, { exercise: {} });
+export const updateExercise = createAction(ACTIONS.UPDATE_EXERCISE, { exerciseId: {} });
