@@ -52,7 +52,7 @@ export const getLocalStorageState = () => {
     const oldExercises = valueIn(state, 'exercises');
     const exercises = fixExerciseState(oldExercises);
 
-    return { ...state, exercises };
+    return { exercises };
   } catch (err) {
     return undefined;
   }
@@ -60,7 +60,7 @@ export const getLocalStorageState = () => {
 
 export const saveStateToLocalStorage = (state) => {
   try {
-    const serializedState = JSON.stringify(valueIn(state));
+    const serializedState = JSON.stringify({ exercises: valueIn(state, 'exercises') });
     localStorage.setItem('setCounter', serializedState);
   } catch (err) {
     // Do nothing for now

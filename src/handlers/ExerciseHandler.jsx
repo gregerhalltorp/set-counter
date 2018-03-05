@@ -15,7 +15,7 @@ const defaultProps = {
   exercises: [],
 };
 
-const CounterHandlerDumb = ({ dispatch, exercises }) => {
+const ExerciseHandlerDumb = ({ dispatch, exercises }) => {
   const potentialExercises = (Object.keys(exercises) || []).map((exerciseId) => {
     const onUpdateClick = () => dispatch(updateExercise({ exerciseId }));
     return <Counter key={exerciseId} exercise={exercises[exerciseId]} updater={onUpdateClick} />;
@@ -24,11 +24,11 @@ const CounterHandlerDumb = ({ dispatch, exercises }) => {
   return <div>{potentialExercises}</div>;
 };
 
-CounterHandlerDumb.defaultProps = defaultProps;
-CounterHandlerDumb.propTypes = propTypes;
+ExerciseHandlerDumb.defaultProps = defaultProps;
+ExerciseHandlerDumb.propTypes = propTypes;
 
 const mapStateToProps = state => ({
   exercises: selectExercises(state),
 });
 
-export default connect(mapStateToProps)(CounterHandlerDumb);
+export default connect(mapStateToProps)(ExerciseHandlerDumb);
