@@ -11,7 +11,6 @@ import { authStateChanged } from './redux/actions';
 
 const initializeStoreSubscriptions = (store) => {
   firebase.auth.onAuthStateChanged((authUser) => {
-    console.log('authuser', authUser);
     store.dispatch(authStateChanged({ authUser: authUser || false }));
   });
 };

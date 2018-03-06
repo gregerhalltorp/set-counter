@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Navigation from '../Navigation/Navigation.jsx';
+import Greeting from './_Greeting.jsx';
+
 import { selectUser } from '../../redux/selectors/appSelectors';
 
 const propTypes = {
@@ -17,11 +19,12 @@ const HeaderDumb = ({ user }) => {
   if (user === null) {
     return null;
   }
-  const potentialGreeting = user && <div className="sc-header__greeting">Hej {user.email}</div>;
+
   return (
     <div className="sc-header">
       <Navigation auth={!!user} />
-      {potentialGreeting}
+
+      <Greeting user={user} />
     </div>
   );
 };

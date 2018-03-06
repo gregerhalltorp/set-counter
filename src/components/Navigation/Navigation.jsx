@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import * as ROUTES from '../../constants/routes';
-import { LogOutButton } from '../LogOut/LogOut';
 
 const propTypes = {
   auth: PropTypes.bool,
@@ -23,9 +22,6 @@ const Navigation = ({ auth }) => {
               Home
             </Link>
           </li>
-          <li className="sc-nav__nav-item">
-            <LogOutButton />
-          </li>
         </ul>
       </div>
     );
@@ -34,11 +30,6 @@ const Navigation = ({ auth }) => {
   return (
     <div className="sc-nav">
       <ul className="sc-nav__nav-list">
-        <li className="sc-nav__nav-item">
-          <Link to={ROUTES.LANDING} href={ROUTES.LANDING}>
-            Home
-          </Link>
-        </li>
         <li className="sc-nav__nav-item">
           <Link to={ROUTES.LOG_IN} href={ROUTES.LOG_IN}>
             Log In
