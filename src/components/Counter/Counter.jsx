@@ -56,7 +56,7 @@ CounterDumb.propTypes = propTypes;
 CounterDumb.defaultProps = defaultProps;
 
 const mapStateToProps = (state, props) => ({
-  sets: selectTodaysSets(state, props),
+  todaysSets: selectTodaysSets(state, props),
 });
 
 export default connect(mapStateToProps)(CounterDumb);
