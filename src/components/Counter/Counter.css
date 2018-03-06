@@ -1,0 +1,21 @@
+.sc-counter {
+  text-align: center;
+}
+
+.sc-counter__heading {
+  font-size: 30px;
+}
+
+.sc-counter__button {
+  margin-top: 10px;
+  background-color: #66e466;
+  border-color: #66e466;
+  box-shadow: none;
+  padding: 30px;
+  border-radius: 60px;
+  font-size: 24px;
+}
+
+.sc-counter__button:hover {
+  cursor: pointer;
+}

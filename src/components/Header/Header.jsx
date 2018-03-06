@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 
 import Navigation from '../Navigation/Navigation.jsx';
 import Greeting from './_Greeting.jsx';
-
 import { selectUser } from '../../redux/selectors/appSelectors';
+import './Header.css';
 
 const propTypes = {
   user: PropTypes.oneOfType([PropTypes.shape({}), PropTypes.bool]),

@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './Counter.css';
+
 const selectSetsRepsDoneToday = (sets) => {
   const todayString = new Date().toLocaleDateString();
   return Object.keys(sets)
@@ -14,15 +16,6 @@ const selectSetsRepsDoneToday = (sets) => {
         reps: 0,
       }
     );
-  // return sets.filter(set => set.date.toLocaleDateString() === todayString).reduce(
-  //   (acc, cur) => {
-  //     return { sets: ++acc.sets, reps: acc.reps + cur.reps };
-  //   },
-  //   {
-  //     sets: 0,
-  //     reps: 0,
-  //   }
-  // );
 };
 
 const propTypes = {
