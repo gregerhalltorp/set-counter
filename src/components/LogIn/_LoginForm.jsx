@@ -54,7 +54,7 @@ class LogInForm extends React.Component {
     return (
       <form onSubmit={this.onSubmit}>
         <input
-          type="text"
+          type="email"
           value={email}
           placeholder="Email Address"
           onChange={event => this.setState(byPropKey('email', event.target.value))}
