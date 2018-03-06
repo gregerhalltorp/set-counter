@@ -38,6 +38,7 @@
   margin-top: 10px;
   background-color: #66e466;
   border-color: #66e466;
+  box-shadow: none;
   padding: 30px;
   border-radius: 60px;
   font-size: 24px;
@@ -49,7 +50,7 @@
 
 .oh-so-hidden {
   position: absolute;
-  top: 0;
+  bottom: 0;
   right: 0;
 }
 

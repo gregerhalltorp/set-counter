@@ -7,10 +7,12 @@ import { firebase } from './firebase';
 import makeStore from './redux/store/';
 import Root from './components/Root.jsx';
 import registerServiceWorker from './registerServiceWorker';
+import { authStateChanged } from './redux/actions';
 
 const initializeStoreSubscriptions = (store) => {
   firebase.auth.onAuthStateChanged((authUser) => {
-    store.dispatch({ type: 'AUTH_STATE_CHANGED', data: authUser || false });
+    console.log('authuser', authUser);
+    store.dispatch(authStateChanged({ authUser: authUser || false }));
   });
 };
 

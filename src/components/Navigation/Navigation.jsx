@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import * as ROUTES from '../../constants/routes';
+import { LogOutButton } from '../LogOut/LogOut';
 
 const propTypes = {
   auth: PropTypes.bool,
@@ -13,7 +14,6 @@ const defaultProps = {
 };
 
 const Navigation = ({ auth }) => {
-  console.log(auth);
   if (auth) {
     return (
       <div className="sc-nav">
@@ -24,9 +24,7 @@ const Navigation = ({ auth }) => {
             </Link>
           </li>
           <li className="sc-nav__nav-item">
-            <Link to={ROUTES.LOG_OUT} href={ROUTES.LOG_OUT}>
-              Log Out
-            </Link>
+            <LogOutButton />
           </li>
         </ul>
       </div>

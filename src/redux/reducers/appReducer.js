@@ -2,6 +2,12 @@ import * as ACTIONS from '../actions/actions';
 
 export const initialState = {
   lastUpdatedDate: new Date(),
+  loginPending: false,
+  logoutPending: false,
+  loginError: false,
+  logoutError: false,
+  callIsSlow: false,
+  authUser: null,
 };
 
 export default (state = initialState, action) => {
@@ -10,6 +16,53 @@ export default (state = initialState, action) => {
       return {
         ...state,
         lastUpdatedDate: new Date(),
+      };
+    case ACTIONS.SET_LOGIN_PENDING:
+      console.log('Log in pending');
+      return { ...state, loginPending: true };
+    case ACTIONS.SET_LOGOUT_PENDING:
+      console.log('Log out pending');
+      return { ...state, logoutPending: true };
+    case ACTIONS.SET_CALL_IS_SLOW:
+      return { ...state, callIsSlow: true };
+    case ACTIONS.SET_LOGIN_SUCCESS: {
+      console.log('Log in succeeded');
+      return {
+        ...state,
+        loginPending: false,
+        callIsSlow: false,
+        loginError: false,
+      };
+    }
+    case ACTIONS.SET_LOGOUT_SUCCESS: {
+      console.log('Log out succeeded');
+      return {
+        ...state,
+        logoutPending: false,
+        callIsSlow: false,
+        logoutnError: false,
+      };
+    }
+    case ACTIONS.SET_LOGIN_ERROR:
+      console.log('Log in failed', action.data);
+      return {
+        ...state,
+        loginPending: false,
+        callIsSlow: false,
+        loginError: action.data.err,
+      };
+    case ACTIONS.SET_LOGOUT_ERROR:
+      console.log('Log out failed', action.data);
+      return {
+        ...state,
+        logoutPending: false,
+        callIsSlow: false,
+        logoutError: action.data.err,
+      };
+    case ACTIONS.AUTH_STATE_CHANGED:
+      return {
+        ...state,
+        authUser: action.data.authUser,
       };
     default:
       return state;
