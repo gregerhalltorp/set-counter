@@ -14,26 +14,19 @@
 [ ] 13. Features
 
 
-///////////////////////
-// Sync and data
-///////////////////////
-// 
-{
-  user: {
-    fields...
-    exercises: {
-      exerciseId: {
-        fields...
-        sets: {
-          setId: {
-            fields...
-          }
-        }
-      }
-    }
-  }
-}
-// Need to rethink data model for this. And must make a transition.
+Model can now be used as is (map field on document) or populate exercises as subcollection of user and sets as a
+subcollection of exercise.
+To move A -> B requires that field exercises on user be moved from map to subcollection.
+On login get user document. If it has exercise field, load that and write it to collection (and load into state). 
+Else if it has exercise subcollection, load from that. Write both to new structure. (New name might be necessary)
+
+To be able to use on more than one machine, on sign in we will always need to merge if the database holds values.
+For now: if localStorage is not empty, it is master.
+
+Some sort of toggle for "guest mode" is necessary, think about it!
+
+Indicate login modes!
+Indicate syncing?
 
 * ids: node-uuid (node-uuid.v4())
 * toastr: start here: https://github.com/diegoddox/react-redux-toastr

@@ -1,6 +1,6 @@
-// import { createSelector } from 'reselect';
-import valueIn from '../../utils/valueIn';
 import { createSelector } from 'reselect';
+
+import valueIn from '../../utils/valueIn';
 
 export const selectExercises = state => valueIn(state, 'exercises');
 
@@ -19,19 +19,3 @@ export const selectTodaysSets = createSelector([selectSets], (sets) => {
       { sets: 0, reps: 0 }
     );
 });
-// const selectSetsRepsDoneToday = (sets) => {
-//   const todayString = new Date().toLocaleDateString();
-//   return Object.keys(sets)
-//     .filter(setId => sets[setId].date.toLocaleDateString() === todayString)
-//     .reduce(
-//       (acc, cur) => {
-//         return { sets: ++acc.sets, reps: acc.reps + sets[cur].reps };
-//       },
-//       {
-//         sets: 0,
-//         reps: 0,
-//       }
-//     );
-// };
-
-// export const selectTodaysSetsForExercise = (state, props) => createSelector([selectExercises], )

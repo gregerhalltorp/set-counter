@@ -18,14 +18,7 @@ const defaultProps = {
 const ExerciseHandlerDumb = ({ dispatch, exercises }) => {
   const potentialExercises = (Object.keys(exercises) || []).map((exerciseId) => {
     const onUpdateClick = () => dispatch(updateExercise({ exerciseId }));
-    return (
-      <Counter
-        key={exerciseId}
-        exerciseId={exerciseId}
-        exercise={exercises[exerciseId]}
-        updater={onUpdateClick}
-      />
-    );
+    return <Counter key={exerciseId} exerciseId={exerciseId} updater={onUpdateClick} />;
   });
 
   return <div>{potentialExercises}</div>;

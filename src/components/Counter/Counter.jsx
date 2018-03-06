@@ -2,42 +2,27 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { selectTodaysSets } from '../../redux/selectors/exercisesSelectors';
+import { selectTodaysSets, selectExercise } from '../../redux/selectors/exercisesSelectors';
 import './Counter.css';
-
-const selectSetsRepsDoneToday = (sets) => {
-  const todayString = new Date().toLocaleDateString();
-  return Object.keys(sets)
-    .filter(setId => sets[setId].date.toLocaleDateString() === todayString)
-    .reduce(
-      (acc, cur) => {
-        return { sets: ++acc.sets, reps: acc.reps + sets[cur].reps };
-      },
-      {
-        sets: 0,
-        reps: 0,
-      }
-    );
-};
 
 const propTypes = {
   exercise: PropTypes.shape({}),
   updater: PropTypes.func.isRequired,
+  todaysSets: PropTypes.shape({}).isRequired,
 };
 
 const defaultProps = {
   exercise: {},
 };
 
-const CounterDumb = ({ exercise, updater }) => {
+const CounterDumb = ({ exercise, updater, todaysSets }) => {
   if (!exercise) {
     return false;
   }
-  const { reps, name, sets } = exercise;
 
-  const todaysValues = selectSetsRepsDoneToday(sets);
+  const { reps, name } = exercise;
 
-  const setsRepsDone = `${todaysValues.sets} sets / ${todaysValues.reps} reps done`;
+  const setsRepsDone = `${todaysSets.sets} sets / ${todaysSets.reps} reps done`;
 
   return (
     <div>
@@ -56,6 +41,7 @@ CounterDumb.propTypes = propTypes;
 CounterDumb.defaultProps = defaultProps;
 
 const mapStateToProps = (state, props) => ({
+  exercise: selectExercise(state, props),
   todaysSets: selectTodaysSets(state, props),
 });
 
