@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { LogOutButton } from '../LogOut/LogOut';
+import './_Greeting.css';
 
 const propTypes = {
   user: PropTypes.oneOfType([PropTypes.shape({}), PropTypes.bool]),

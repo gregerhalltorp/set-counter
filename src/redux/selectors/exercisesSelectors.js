@@ -1,4 +1,37 @@
 // import { createSelector } from 'reselect';
 import valueIn from '../../utils/valueIn';
+import { createSelector } from 'reselect';
 
 export const selectExercises = state => valueIn(state, 'exercises');
+
+export const selectExercise = (state, props) => valueIn(state, ['exercises', props.exerciseId]);
+
+export const selectSets = (state, props) => valueIn(state, ['exercises', props.exerciseId, 'sets']);
+
+export const selectTodaysSets = createSelector([selectSets], (sets) => {
+  const todayString = new Date().toLocaleDateString();
+  return Object.keys(sets)
+    .filter(setId => sets[setId].date.toLocaleDateString() === todayString)
+    .reduce(
+      (acc, cur) => {
+        return { sets: ++acc.sets, reps: acc.reps + sets[cur].reps };
+      },
+      { sets: 0, reps: 0 }
+    );
+});
+// const selectSetsRepsDoneToday = (sets) => {
+//   const todayString = new Date().toLocaleDateString();
+//   return Object.keys(sets)
+//     .filter(setId => sets[setId].date.toLocaleDateString() === todayString)
+//     .reduce(
+//       (acc, cur) => {
+//         return { sets: ++acc.sets, reps: acc.reps + sets[cur].reps };
+//       },
+//       {
+//         sets: 0,
+//         reps: 0,
+//       }
+//     );
+// };
+
+// export const selectTodaysSetsForExercise = (state, props) => createSelector([selectExercises], )

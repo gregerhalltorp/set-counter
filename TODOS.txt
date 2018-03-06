@@ -4,7 +4,7 @@
 [X] 3.  How to do the storage side effect?
 [X] 4.  Prop types
 [X] 5.  Rethink store some
-[ ] 6.  Firebase Auth
+[X] 6.  Firebase Auth
 [ ] 7.  Experiment with firebase
 [ ] 8.  Sign in and fetch from firebase. Promise not so bad (allows first render then second)
 [ ] 9.  Sagas (save to firebase)

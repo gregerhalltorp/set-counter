@@ -1,6 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import { selectTodaysSets } from '../../redux/selectors/exercisesSelectors';
 import './Counter.css';
 
 const selectSetsRepsDoneToday = (sets) => {
@@ -27,7 +29,7 @@ const defaultProps = {
   exercise: {},
 };
 
-const Counter = ({ exercise, updater }) => {
+const CounterDumb = ({ exercise, updater }) => {
   if (!exercise) {
     return false;
   }
@@ -50,7 +52,11 @@ const Counter = ({ exercise, updater }) => {
   );
 };
 
-Counter.propTypes = propTypes;
-Counter.defaultProps = defaultProps;
+CounterDumb.propTypes = propTypes;
+CounterDumb.defaultProps = defaultProps;
 
-export default Counter;
+const mapStateToProps = (state, props) => ({
+  sets: selectTodaysSets(state, props),
+});
+
+export default connect(mapStateToProps)(CounterDumb);
