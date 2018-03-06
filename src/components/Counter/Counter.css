@@ -9,7 +9,7 @@
 .sc-counter__button {
   margin-top: 10px;
   background-color: #66e466;
-  border-color: #66e466;
+  border: none;
   box-shadow: none;
   padding: 30px;
   border-radius: 60px;
