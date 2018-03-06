@@ -1,7 +1,6 @@
 function* tryCatch(f, ...args) {
   let err;
   let res;
-
   try {
     res = yield f(...args);
   } catch (e) {

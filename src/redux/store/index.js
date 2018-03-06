@@ -5,6 +5,7 @@ import rootReducer from '../reducers';
 import { getLocalStorageState, saveStateToLocalStorage } from '../../utils/localStorage';
 import loginSaga from '../sagas/loginSaga';
 import logoutSaga from '../sagas/logoutSaga';
+import authStateChangedSaga from '../sagas/authStateChangedSaga';
 
 const makeStore = () => {
   const localData = getLocalStorageState();
@@ -14,6 +15,7 @@ const makeStore = () => {
 
   sagaMiddleware.run(loginSaga);
   sagaMiddleware.run(logoutSaga);
+  sagaMiddleware.run(authStateChangedSaga);
 
   store.subscribe(() => {
     saveStateToLocalStorage(store.getState());
