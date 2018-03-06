@@ -20,10 +20,12 @@ const defaultProps = {
   user: null,
 };
 
+// <BrowserRouter basename="/repo-name" />
+
 const AppHandlerDumb = ({ user }) => {
   return (
     <div className="sc-app">
-      <Router>
+      <Router basename="/set-counter">
         <div>
           <button href="#" className="oh-so-hidden" onClick={() => {}}>
             &nbsp;
