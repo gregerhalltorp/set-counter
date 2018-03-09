@@ -1,24 +1,36 @@
-import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
+import { createStore, applyMiddleware } from 'redux';
 
-import rootReducer from '../reducers';
-import { getLocalStorageState, saveStateToLocalStorage } from '../../localStorage';
+import authStateChangedSaga from '../sagas/authStateChangedSaga';
 import loginSaga from '../sagas/loginSaga';
 import logoutSaga from '../sagas/logoutSaga';
-import authStateChangedSaga from '../sagas/authStateChangedSaga';
-import writeToDbSaga from '../sagas/writeToDbSaga';
-import valueIn from '../../utils/valueIn';
+import rootReducer from '../reducers';
+import syncToDbSaga from '../sagas/syncToDbSaga';
+
+import { getLocalStorageState, saveStateToLocalStorage } from '../../localStorage';
+import { syncToDatabase } from '../actions';
+import { selectExerciseState, selectExercisesSynced } from '../selectors/exercisesSelectors';
 
 const observeStore = (store) => {
   let currentExercises;
 
   const handleChange = () => {
     const nextState = store.getState();
-    if (valueIn(nextState, 'exercises') !== currentExercises) {
-      currentExercises = valueIn(nextState, 'exercises');
-      saveStateToLocalStorage(store.getState());
+    const exerciseState = selectExerciseState(nextState);
+    console.log('exerciseState', exerciseState);
+    console.log('currentExercises', currentExercises);
+    console.log('exerciseState !== currentExercises', exerciseState !== currentExercises);
+
+    if (currentExercises === undefined) {
+      currentExercises = exerciseState;
+    } else if (exerciseState !== currentExercises) {
+      currentExercises = exerciseState;
+      saveStateToLocalStorage(nextState);
+      if (selectExercisesSynced(nextState) === false) {
+        console.log('observestore dispatching');
+        store.dispatch(syncToDatabase());
+      }
     }
-    // Dispatch the action here
   };
 
   const unsubscribe = store.subscribe(handleChange);
@@ -35,7 +47,7 @@ const makeStore = () => {
   sagaMiddleware.run(loginSaga);
   sagaMiddleware.run(logoutSaga);
   sagaMiddleware.run(authStateChangedSaga);
-  sagaMiddleware.run(writeToDbSaga);
+  sagaMiddleware.run(syncToDbSaga);
 
   observeStore(store);
 

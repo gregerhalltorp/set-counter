@@ -27,5 +27,5 @@ export const setCallIsSlow = createAction(ACTIONS.SET_CALL_IS_SLOW, {});
 
 export const navigate = createAction(ACTIONS.NAVIGATE, { history: {}, route: '' });
 
-export const sendToDatabase = createAction(ACTIONS.SEND_TO_DB, { exercises: {}, uid: '' });
+export const syncToDatabase = createAction(ACTIONS.SYNC_TO_DB, { exercises: {}, uid: '' });
 export const databaseSynced = createAction(ACTIONS.DATABASE_SYNCED, {});

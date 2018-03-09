@@ -2,7 +2,11 @@ import { createSelector } from 'reselect';
 
 import valueIn from '../../utils/valueIn';
 
+export const selectExerciseState = state => valueIn(state, 'exercises');
+
 export const selectExercises = state => valueIn(state, 'exercises.exercises');
+
+export const selectExercisesSynced = state => valueIn(state, 'exercises.isSynced');
 
 export const selectExercise = (state, props) =>
   valueIn(state, ['exercises', 'exercises', props.exerciseId]);

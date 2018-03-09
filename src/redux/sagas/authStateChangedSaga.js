@@ -1,15 +1,17 @@
 import { put, select, takeLatest } from 'redux-saga/effects';
 
 import * as ACTIONS from '../actions/actions';
-import { sendToDatabase, updateAuthState } from '../actions';
+import { syncToDatabase, updateAuthState } from '../actions';
 import { fs } from '../../firebase';
 import tryCatchSaga from '../../utils/tryCatchSaga';
-import { selectExercises } from '../selectors/exercisesSelectors';
+import { selectExercises, selectExercisesSynced } from '../selectors/exercisesSelectors';
 import valueIn from '../../utils/valueIn';
 
 // move some stuff to here!
 export function* authStateChangedFunction(action) {
   const exercises = yield select(selectExercises);
+  const isSynced = yield select(selectExercisesSynced);
+
   const uid = valueIn(action, 'data.authUser.uid');
 
   yield put(updateAuthState({ authUser: valueIn(action, 'data.authUser') }));
@@ -35,8 +37,9 @@ export function* authStateChangedFunction(action) {
     // DO SYNC STUFF HERE!
   }
 
-  if (exercises) {
-    yield put(sendToDatabase({ exercises, uid }));
+  if (exercises && isSynced === false) {
+    yield console.log('authstatechanged dispatching');
+    yield put(syncToDatabase());
   }
 }
 

@@ -62,11 +62,6 @@ export default (state = initialState, action) => {
         ...state,
         authUser: action.data.authUser,
       };
-    case ACTIONS.DATABASE_SYNCED:
-      return {
-        ...state,
-        isSynced: true,
-      };
     default:
       return state;
   }
