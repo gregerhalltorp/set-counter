@@ -12,3 +12,6 @@ export const SET_LOGOUT_ERROR = 'SET_LOGOUT_ERROR';
 export const SET_CALL_IS_SLOW = 'SET_CALL_IS_SLOW';
 export const AUTH_STATE_CHANGED = 'AUTH_STATE_CHANGED';
 export const NAVIGATE = 'NAVIGATE';
+export const SEND_TO_DB = 'SEND_TO_DB';
+export const UPDATE_AUTH_STATE = 'UPDATE_AUTH_STATE';
+export const DATABASE_SYNCED = 'DATABASE_SYNCED';

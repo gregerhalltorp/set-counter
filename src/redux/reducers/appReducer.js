@@ -26,7 +26,6 @@ export default (state = initialState, action) => {
     case ACTIONS.SET_CALL_IS_SLOW:
       return { ...state, callIsSlow: true };
     case ACTIONS.SET_LOGIN_SUCCESS: {
-      console.log('Log in succeeded');
       return {
         ...state,
         loginPending: false,
@@ -35,7 +34,6 @@ export default (state = initialState, action) => {
       };
     }
     case ACTIONS.SET_LOGOUT_SUCCESS: {
-      console.log('Log out succeeded');
       return {
         ...state,
         logoutPending: false,
@@ -59,10 +57,15 @@ export default (state = initialState, action) => {
         callIsSlow: false,
         logoutError: action.data.err,
       };
-    case ACTIONS.AUTH_STATE_CHANGED:
+    case ACTIONS.UPDATE_AUTH_STATE:
       return {
         ...state,
         authUser: action.data.authUser,
+      };
+    case ACTIONS.DATABASE_SYNCED:
+      return {
+        ...state,
+        isSynced: true,
       };
     default:
       return state;

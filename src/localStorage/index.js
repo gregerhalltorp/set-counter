@@ -49,16 +49,20 @@ export const getLocalStorageState = () => {
     }
 
     const state = JSON.parse(stoStateStr, dateReviver);
+    if (valueIn(state, 'exercises.exercises')) {
+      return state;
+    }
     const oldExercises = valueIn(state, 'exercises');
     const exercises = fixExerciseState(oldExercises);
 
-    return { exercises };
+    return { exercises: { exercises } };
   } catch (err) {
     return undefined;
   }
 };
 
 export const saveStateToLocalStorage = (state) => {
+  console.log('saving to localstorage');
   try {
     const serializedState = JSON.stringify({ exercises: valueIn(state, 'exercises') });
     localStorage.setItem('setCounter', serializedState);

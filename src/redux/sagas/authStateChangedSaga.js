@@ -1,32 +1,42 @@
-import { select, takeLatest } from 'redux-saga/effects';
+import { put, select, takeLatest } from 'redux-saga/effects';
 
 import * as ACTIONS from '../actions/actions';
+import { sendToDatabase, updateAuthState } from '../actions';
 import { fs } from '../../firebase';
 import tryCatchSaga from '../../utils/tryCatchSaga';
 import { selectExercises } from '../selectors/exercisesSelectors';
+import valueIn from '../../utils/valueIn';
 
+// move some stuff to here!
 export function* authStateChangedFunction(action) {
   const exercises = yield select(selectExercises);
-  yield console.log(action);
-  if (!action.data.authUser) {
+  const uid = valueIn(action, 'data.authUser.uid');
+
+  yield put(updateAuthState({ authUser: valueIn(action, 'data.authUser') }));
+
+  if (!uid) {
     return;
   }
 
-  console.log('getting user');
-  const { err, res } = yield tryCatchSaga(() => fs.getUser(action.data.authUser.uid));
-  console.log('err', err);
-  console.log('res', res);
+  const { err, res } = yield tryCatchSaga(() => fs.getUser(uid));
   if (err) {
     // DO SOMETHING ELSE HERE, MAYBE PUT A THING?
   }
   const data = res.data();
+
+  // 0. No exercises, no exercisemap => do nothing now
+  // 1. Exercises, No exercisesMap => write exercises to db
+  // 2. No Exercises, exerciseMap => put action per exercise with exercise to write
+  // 3. Exercises and exerciseMap => merge and then put
+  // 2, 3 should be handled via store subscription, dispatch
+  // 4. offline
 
   if (data.exercisesMap) {
     // DO SYNC STUFF HERE!
   }
 
   if (exercises) {
-    // SAVE STATE TO DB HERE?
+    yield put(sendToDatabase({ exercises, uid }));
   }
 }
 
