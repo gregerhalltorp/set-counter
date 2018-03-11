@@ -4,13 +4,14 @@ import * as ACTIONS from '../actions/actions';
 import { dateReviver } from '../../utils';
 
 export const initialState = {
-  isSynced: null,
+  isSynced: true,
+  lastUpdatedDate: new Date(0),
   exercises: {
     [uuid()]: {
       name: 'Armhävningar',
       sets: {},
       reps: 25,
-      lastUpdatedDate: new Date(),
+      lastUpdatedDate: new Date(0),
     },
   },
 };
@@ -21,9 +22,13 @@ const updateExerciseFunction = (state, action) => {
     return state;
   }
   const newState = JSON.parse(JSON.stringify(state), dateReviver);
+  newState.isSynced = false;
+  newState.lastUpdatedDate = new Date();
+
   const exercise = newState.exercises[exerciseId];
   exercise.sets[uuid()] = { reps: exercise.reps, date: new Date() };
-  newState.isSynced = false;
+  exercise.lastUpdatedDate = new Date();
+
   return newState;
 };
 
@@ -35,6 +40,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isSynced: true,
+      };
+    case ACTIONS.BATCH_ADD_EXERCISES:
+      return {
+        ...state,
+        lastUpdatedDate: new Date(),
+        isSynced: !action.data.shouldSync,
+        exercises: action.data.exercises,
       };
     default:
       return state;

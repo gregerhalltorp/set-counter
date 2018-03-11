@@ -5,6 +5,9 @@ import valueIn from '../../utils/valueIn';
 export const selectExerciseState = state => valueIn(state, 'exercises');
 
 export const selectExercises = state => valueIn(state, 'exercises.exercises');
+export const selectExerciseIds = createSelector([selectExercises], (exercises) => {
+  Object.keys(exercises).map(eKey => eKey);
+});
 
 export const selectExercisesSynced = state => valueIn(state, 'exercises.isSynced');
 

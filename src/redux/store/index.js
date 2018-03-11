@@ -17,17 +17,14 @@ const observeStore = (store) => {
   const handleChange = () => {
     const nextState = store.getState();
     const exerciseState = selectExerciseState(nextState);
-    console.log('exerciseState', exerciseState);
-    console.log('currentExercises', currentExercises);
-    console.log('exerciseState !== currentExercises', exerciseState !== currentExercises);
+    const isSynced = selectExercisesSynced(nextState);
 
     if (currentExercises === undefined) {
       currentExercises = exerciseState;
     } else if (exerciseState !== currentExercises) {
       currentExercises = exerciseState;
       saveStateToLocalStorage(nextState);
-      if (selectExercisesSynced(nextState) === false) {
-        console.log('observestore dispatching');
+      if (isSynced === false) {
         store.dispatch(syncToDatabase());
       }
     }

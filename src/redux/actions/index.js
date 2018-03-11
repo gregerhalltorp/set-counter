@@ -29,3 +29,8 @@ export const navigate = createAction(ACTIONS.NAVIGATE, { history: {}, route: '' 
 
 export const syncToDatabase = createAction(ACTIONS.SYNC_TO_DB, { exercises: {}, uid: '' });
 export const databaseSynced = createAction(ACTIONS.DATABASE_SYNCED, {});
+
+export const batchAddExercises = createAction(ACTIONS.BATCH_ADD_EXERCISES, {
+  exercises: {},
+  shouldSync: false,
+});

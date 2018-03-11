@@ -15,3 +15,4 @@ export const NAVIGATE = 'NAVIGATE';
 export const SYNC_TO_DB = 'SEND_TO_DB';
 export const UPDATE_AUTH_STATE = 'UPDATE_AUTH_STATE';
 export const DATABASE_SYNCED = 'DATABASE_SYNCED';
+export const BATCH_ADD_EXERCISES = 'BATCH_ADD_EXERCISES';

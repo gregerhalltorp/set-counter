@@ -2,26 +2,29 @@ import { put, select, takeEvery } from 'redux-saga/effects';
 
 import * as ACTIONS from '../actions/actions';
 import tryCatchSaga from '../../utils/tryCatchSaga';
-import valueIn from '../../utils/valueIn';
 
 import { databaseSynced } from '../actions';
 import { fs } from '../../firebase';
 import { selectExercises } from '../selectors/exercisesSelectors';
 import { selectUid } from '../selectors/appSelectors';
 
-export function* syncToDatabase(action) {
+export function* syncToDatabase() {
   const exercises = yield select(selectExercises);
   const uid = yield select(selectUid);
 
   if (!exercises || !uid) {
-    yield console.log('returning');
+    /* eslint-disable no-console */
+    if (!exercises) {
+      yield console.log('no exercises');
+    } else {
+      yield console.log('no uid');
+    }
+    /* eslint-enable no-console */
     return;
   }
 
-  yield console.log('not really saving to db', uid, exercises);
-
-  let err;
-  // const { err } = yield tryCatchSaga(() => fs.setUserExercises(action.data));
+  // yield console.log('saving to db', uid, exercises);
+  const { err } = yield tryCatchSaga(() => fs.setUserExercises({ uid, exercises }));
 
   if (err) {
     // put it on the state to show in a thing

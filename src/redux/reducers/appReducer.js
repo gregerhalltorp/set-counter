@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import * as ACTIONS from '../actions/actions';
 
 export const initialState = {
