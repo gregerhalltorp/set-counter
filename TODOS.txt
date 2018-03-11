@@ -7,11 +7,11 @@
 [X] 6.  Firebase Auth
 [X] 7.  Experiment with firebase
 [X] 8.  Sagas
-[ ] 9.  
-[ ] (save to firebase)
-[ ] 10. Refactor some more: Create ExerciseHandler, can take some props and be connected => Reselect
-[ ] 11. Reselect (move that logic there)
-[ ] 12. Rethink store, this is no good (best after understanding some auth, will affect this!)
+[ ] 9.  (save to firebase)
+[X] 10. Refactor some more: Create ExerciseHandler, can take some props and be connected => Reselect
+[X] 11. Reselect (move that logic there)
+[X] 12. Rethink store, this is no good (best after understanding some auth, will affect this!)
+[ ] 13. Refactor! Refactor! Refactor!
 [ ] 13. Features
 
 
@@ -21,18 +21,12 @@ To move A -> B requires that field exercises on user be moved from map to subcol
 On login get user document. If it has exercise field, load that and write it to collection (and load into state). 
 Else if it has exercise subcollection, load from that. Write both to new structure. (New name might be necessary)
 
-To be able to use on more than one machine, on sign in we will always need to merge if the database holds values.
-For now: if localStorage is not empty, it is master.
-
 Some sort of toggle for "guest mode" is necessary, think about it!
 
 Is offline really functional? If users can create new exercises then no. Sets are ok (if you break it its your own fault!)
 
-How to solve online/offline if not with built in? On load!
-
-For now: auth state changed(loggedin) -> load stuff from db, potentially merge it with potential local state, write it out
-
-Synced prop should be in localStorage but not database
+Better syncing is necessary! Maybe split up localStorage on users? To enable multiple logins?
+Sync exercises separate from each other?
 
 Indicate login modes!
 Indicate syncing?
