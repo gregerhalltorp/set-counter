@@ -25,19 +25,20 @@ const init = async () => {
 
 export const getUser = async (uid) => {
   // eslint-disable-next-line no-unused-vars
-  const [_, fs] = await tryCatch(() => init());
+  const [, fs] = await tryCatch(() => init());
   return fs.doc(`users/${uid}`).get();
 };
 
-export const setUserExercises = async ({ uid, exercises }) => {
+export const setUserExercises = async ({ uid, exercises } = {}) => {
+  console.log(uid, exercises);
   // eslint-disable-next-line no-unused-vars
-  const [_, fs] = await tryCatch(() => init());
+  const [, fs] = await tryCatch(() => init());
   return fs.doc(`users/${uid}`).update({ exercisesMap: exercises });
 };
 
 export const getUser2 = async (uid) => {
   // eslint-disable-next-line no-unused-vars
-  const [_, fs] = await tryCatch(() => init());
+  const [, fs] = await tryCatch(() => init());
   console.log('getting the doc now 222222222222');
   const [err, res] = await tryCatch(() => fs.doc(`users/${uid}`).get());
   console.log('err', err);

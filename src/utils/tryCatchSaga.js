@@ -6,7 +6,8 @@ function* tryCatch(f, ...args) {
   } catch (e) {
     err = e;
   } finally {
-    return { err, res }; // eslint-disable-line no-unsafe-finally
+    // eslint-disable-next-line no-unsafe-finally
+    return { err, res };
   }
 }
 
