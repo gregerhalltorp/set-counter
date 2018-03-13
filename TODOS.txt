@@ -1,19 +1,37 @@
-[X] 0.  ESLINT!
-[X] 1.  Actioncreators + actions
-[X] 2.  Load localStorage, put that in store
-[X] 3.  How to do the storage side effect?
-[X] 4.  Prop types
-[X] 5.  Rethink store some
-[X] 6.  Firebase Auth
-[X] 7.  Experiment with firebase
-[X] 8.  Sagas
-[ ] 9.  (save to firebase)
-[X] 10. Refactor some more: Create ExerciseHandler, can take some props and be connected => Reselect
-[X] 11. Reselect (move that logic there)
-[X] 12. Rethink store, this is no good (best after understanding some auth, will affect this!)
-[ ] 13. Refactor! Refactor! Refactor!
-[ ] 13. Features
+[X] ESLINT!
+[X] Actioncreators + actions
+[X] Load localStorage, put that in store
+[X] How to do the storage side effect?
+[X] Prop types
+[X] Rethink store some
+[X] Firebase Auth
+[X] Experiment with firebase
+[X] Sagas
+[X] (save to firebase)
+[X] Refactor some more: Create ExerciseHandler, can take some props and be connected => Reselect
+[X] Reselect (move that logic there)
+[X] Rethink store, this is no good (best after understanding some auth, will affect this!)
+[ ] Refactor! Refactor! Refactor!
+[ ] SCSS
+[ ] Better Mobile design menu
+[ ] Better Mobile design login
+[ ] Dive into-feaure -> show yearly stats
+[ ] Features
 
+// Extra small devices (portrait phones, less than 576px)
+// No media query since this is the default in Bootstrap
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) { ... }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { ... }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { ... }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... }
 
 Model can now be used as is (map field on document) or populate exercises as subcollection of user and sets as a
 subcollection of exercise.

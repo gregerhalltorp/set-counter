@@ -3,7 +3,7 @@ import * as ACTIONS from '../actions/actions';
 
 export const initialState = {
   lastUpdatedDate: new Date(),
-  loginPending: false,
+  loginPending: true,
   logoutPending: false,
   loginError: false,
   logoutError: false,
@@ -62,6 +62,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         authUser: action.data.authUser,
+        loginPending: false,
       };
     default:
       return state;

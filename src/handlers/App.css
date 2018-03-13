@@ -14,3 +14,20 @@
 .oh-so-hidden:hover {
   cursor: pointer;
 }
+
+.sc-body__syncindicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  background-color: black;
+}
+
+.sc-body__syncindicator--synced {
+  background-color: green;
+}
+
+.sc-body__syncindicator--not-synced {
+  background-color: red;
+}

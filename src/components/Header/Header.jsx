@@ -17,7 +17,7 @@ const defaultProps = {
 
 const HeaderDumb = ({ user }) => {
   if (user === null) {
-    return null;
+    return <span>Loading...</span>;
   }
 
   return (

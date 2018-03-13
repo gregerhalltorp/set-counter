@@ -11,6 +11,7 @@ import LogOut from '../components/LogOut/LogOut.jsx';
 import './App.css';
 
 import { selectUser } from '../redux/selectors/appSelectors';
+import { selectExercisesSynced } from '../redux/selectors/exercisesSelectors';
 
 const propTypes = {
   user: PropTypes.oneOfType([PropTypes.shape({}), PropTypes.bool]),
@@ -20,16 +21,20 @@ const defaultProps = {
   user: null,
 };
 
+const SyncedIndicator = ({ isSynced }) =>
+  (isSynced ? (
+    <div className="sc-body__syncindicator sc-body__syncindicator--synced" />
+  ) : (
+    <div className="sc-body__syncindicator sc-body__syncindicator--not-synced" />
+  ));
+
 // <BrowserRouter basename="/repo-name" />
 
-const AppHandlerDumb = ({ user }) => {
+const AppHandlerDumb = ({ user, isSynced }) => {
   return (
     <div className="sc-app">
       <Router basename="/set-counter">
         <div>
-          <button href="#" className="oh-so-hidden" onClick={() => {}}>
-            &nbsp;
-          </button>
           <Header />
           <div className="sc-body">
             <Route exact path={ROUTES.LANDING} component={ExerciseHandler} />
@@ -41,6 +46,10 @@ const AppHandlerDumb = ({ user }) => {
             />
             <Route exact path={ROUTES.LOG_OUT} component={LogOut} />
           </div>
+          <button href="#" className="oh-so-hidden" onClick={() => {}}>
+            &nbsp;
+          </button>
+          <SyncedIndicator isSynced={isSynced} />
         </div>
       </Router>
     </div>
@@ -52,6 +61,7 @@ AppHandlerDumb.defaultProps = defaultProps;
 
 const mapStateToProps = state => ({
   user: selectUser(state),
+  isSynced: selectExercisesSynced(state),
 });
 
 export default connect(mapStateToProps)(AppHandlerDumb);
