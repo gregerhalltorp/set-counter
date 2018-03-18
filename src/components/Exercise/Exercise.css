@@ -1,0 +1,23 @@
+.sc-exercise {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.sc-exercise__counter {
+  width: 95%;
+}
+
+.sc-exercise__button {
+  width: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.sc-exercise__button:hover {
+  background-color: green;
+}
+.sc-exercise__button:active {
+  background-color: white;
+}

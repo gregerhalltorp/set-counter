@@ -62,7 +62,7 @@ export const getLocalStorageState = () => {
 };
 
 export const saveStateToLocalStorage = (state) => {
-  console.log('saving to localstorage');
+  // console.log('saving to localstorage');
   try {
     const serializedState = JSON.stringify({ exercises: valueIn(state, 'exercises') });
     localStorage.setItem('setCounter', serializedState);

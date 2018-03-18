@@ -31,5 +31,8 @@
     "no-plusplus": 0,
     "react/jsx-filename-extension": 1,
     "no-self-compare": 0
+  },
+  "globals": {
+    "expect": true
   }
 }

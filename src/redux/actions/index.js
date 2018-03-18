@@ -34,3 +34,5 @@ export const batchAddExercises = createAction(ACTIONS.BATCH_ADD_EXERCISES, {
   exercises: {},
   shouldSync: false,
 });
+
+export const newDayArrived = createAction(ACTIONS.NEW_DAY_ARRIVED, {});

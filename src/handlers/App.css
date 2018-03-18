@@ -3,6 +3,7 @@
   margin-top: 50px;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .oh-so-hidden {
@@ -30,4 +31,64 @@
 
 .sc-body__syncindicator--not-synced {
   background-color: red;
+}
+
+.push-enter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(100%);
+}
+
+.push-enter.push-enter-active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(0%);
+  transition: transform 500ms ease-in-out;
+}
+
+.pop-exit {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(0%);
+}
+
+.pop-exit.pop-exit-active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-100%);
+  transition: transform 500ms ease-in-out;
+}
+
+.pop-enter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-100%);
+}
+
+.pop-enter.pop-enter-active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(0%);
+  transition: transform 500ms ease-in-out;
+}
+
+.push-exit {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(0%);
+}
+
+.push-exit.push-exit-active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(100%);
+  transition: transform 500ms ease-in-out;
 }

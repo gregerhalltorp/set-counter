@@ -30,9 +30,14 @@ export const getUser = async (uid) => {
   return fs.doc(`users/${uid}`).get();
 };
 
-export const setUserExercises = async ({ uid, exercises } = {}) => {
+export const setUserExercises = async ({ uid, exercises, debtUpdatedDate = false } = {}) => {
   const [, fs] = await tryCatch(() => init());
-  return fs.doc(`users/${uid}`).update({ exercisesMap: exercises });
+  const params = { exercisesMap: exercises };
+  if (debtUpdatedDate) {
+    params.debtUpdatedDate = debtUpdatedDate;
+  }
+
+  return fs.doc(`users/${uid}`).update(params);
 };
 
 // export const getUser2 = async (uid) => {

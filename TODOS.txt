@@ -13,6 +13,7 @@
 [X] Rethink store, this is no good (best after understanding some auth, will affect this!)
 [ ] Refactor! Refactor! Refactor!
 [ ] SCSS
+[ ] Better progress indicator - show percentage of goal
 [ ] Better Mobile design menu
 [ ] Better Mobile design login
 [ ] Dive into-feaure -> show yearly stats
@@ -51,6 +52,7 @@ Indicate syncing?
 
 * ids: node-uuid (node-uuid.v4())
 * toastr: start here: https://github.com/diegoddox/react-redux-toastr
+* https://medium.com/@andsens/radial-progress-indicator-using-css-a917b80c43f9
 
 
 

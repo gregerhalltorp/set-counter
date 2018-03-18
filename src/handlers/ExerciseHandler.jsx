@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { updateExercise } from '../redux/actions';
 import { selectExercises } from '../redux/selectors/exercisesSelectors';
-import Counter from '../components/Counter/Counter';
+import Exercise from '../components/Exercise/Exercise.jsx';
 
 const propTypes = {
   exercises: PropTypes.shape({}),
@@ -18,10 +18,11 @@ const defaultProps = {
 const ExerciseHandlerDumb = ({ dispatch, exercises }) => {
   const potentialExercises = (Object.keys(exercises) || []).map((exerciseId) => {
     const onUpdateClick = () => dispatch(updateExercise({ exerciseId }));
-    return <Counter key={exerciseId} exerciseId={exerciseId} updater={onUpdateClick} />;
+    return <Exercise key={exerciseId} exerciseId={exerciseId} updater={onUpdateClick} />;
+    // return <Counter key={exerciseId} exerciseId={exerciseId} updater={onUpdateClick} />;
   });
 
-  return <div>{potentialExercises}</div>;
+  return <React.Fragment>{potentialExercises}</React.Fragment>;
 };
 
 ExerciseHandlerDumb.defaultProps = defaultProps;

@@ -22,15 +22,16 @@ const findExerciseInOtherMap = (currentMap, otherMap, key) => {
 };
 
 const syncExercise = (local, remote) => {
+  const localLastUpdated = local.lastUpdatedDate > remote.lastUpdatedDate;
   const theThing = {
     name: local.name,
-    lastUpdatedDate:
-      local.lastUpdatedDate > remote.lastUpdatedDate
-        ? local.lastUpdatedDate
-        : remote.lastUpdatedDate,
-    reps: local.reps,
+    lastUpdatedDate: localLastUpdated ? local.lastUpdatedDate : remote.lastUpdatedDate,
+    reps: localLastUpdated && local.reps ? local.reps : remote.reps,
+    debt: localLastUpdated && local.debt ? local.debt : remote.debt,
+    dailyGoal: localLastUpdated && local.dailyGoal ? local.dailyGoal : remote.dailyGoal,
     sets: { ...local.sets, ...remote.sets },
   };
+  console.log('theThing', theThing);
   return theThing;
 };
 

@@ -32,7 +32,7 @@ const Navigation = ({ auth }) => {
     <div className="sc-nav">
       <ul className="sc-nav__nav-list">
         <li className="sc-nav__nav-item">
-          <Link to={ROUTES.LOG_IN} href={ROUTES.LOG_IN}>
+          <Link to={{ pathname: ROUTES.LOG_IN }} href={ROUTES.LOG_IN}>
             Log In
           </Link>
         </li>

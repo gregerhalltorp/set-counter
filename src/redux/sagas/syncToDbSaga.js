@@ -5,12 +5,13 @@ import tryCatchSaga from '../../utils/tryCatchSaga';
 
 import { databaseSynced } from '../actions';
 import { fs } from '../../firebase';
-import { selectExercises } from '../selectors/exercisesSelectors';
+import { selectExercises, selectDebtUpdatedDate } from '../selectors/exercisesSelectors';
 import { selectUid } from '../selectors/appSelectors';
 
 export function* syncToDatabase() {
   const exercises = yield select(selectExercises);
   const uid = yield select(selectUid);
+  const debtUpdatedDate = yield select(selectDebtUpdatedDate);
 
   if (!exercises || !uid) {
     /* eslint-disable no-console */
@@ -24,7 +25,12 @@ export function* syncToDatabase() {
   }
 
   // yield console.log('saving to db', uid, exercises);
-  const { err } = yield tryCatchSaga(() => fs.setUserExercises({ uid, exercises }));
+  const params = { uid, exercises };
+  if (debtUpdatedDate) {
+    params.debtUpdatedDate = debtUpdatedDate;
+  }
+
+  const { err } = yield tryCatchSaga(() => fs.setUserExercises(params));
 
   if (err) {
     // put it on the state to show in a thing

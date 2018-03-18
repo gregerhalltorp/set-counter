@@ -25,14 +25,12 @@ const CounterDumb = ({ exercise, updater, todaysSets }) => {
   const setsRepsDone = `${todaysSets.sets} sets / ${todaysSets.reps} reps done`;
 
   return (
-    <div>
-      <div className="sc-counter">
-        <div className="sc-counter__heading">{name}</div>
-        <button className="sc-counter__button" onClick={updater}>
-          {reps}
-        </button>
-        <div className="sc-counter__set-info">{setsRepsDone}</div>
-      </div>
+    <div className="sc-counter">
+      <div className="sc-counter__heading">{name}</div>
+      <button className="sc-counter__button" onClick={updater}>
+        {reps}
+      </button>
+      <div className="sc-counter__set-info">{setsRepsDone}</div>
     </div>
   );
 };
