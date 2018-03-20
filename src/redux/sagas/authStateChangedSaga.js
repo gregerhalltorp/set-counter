@@ -31,7 +31,7 @@ const syncExercise = (local, remote) => {
     dailyGoal: localLastUpdated && local.dailyGoal ? local.dailyGoal : remote.dailyGoal,
     sets: { ...local.sets, ...remote.sets },
   };
-  console.log('theThing', theThing);
+  // console.log('theThing', theThing);
   return theThing;
 };
 
@@ -53,7 +53,8 @@ export function* authStateChangedFunction(action) {
     // DO SOMETHING ELSE HERE, MAYBE PUT A THING?
   }
 
-  const { exercisesMap: remoteExercises } = res.data();
+  // console.log(res.data());
+  const { exercisesMap: remoteExercises, debtUpdatedDate } = res.data();
 
   // Current solution works but is inefficient, will overwrite local storage
   // unnecessarily
@@ -62,7 +63,7 @@ export function* authStateChangedFunction(action) {
   if (remoteExercises) {
     if (!localExercises || isSynced) {
       // console.log('putting without shouldSync');
-      yield put(batchAddExercises({ exercises: remoteExercises }));
+      yield put(batchAddExercises({ exercises: remoteExercises, debtUpdatedDate }));
     } else {
       const newExercises = {};
       Object.keys(localExercises).forEach((eKey) => {
@@ -81,7 +82,7 @@ export function* authStateChangedFunction(action) {
       });
       if (newExercises) {
         // console.log('putting with shouldSync');
-        yield put(batchAddExercises({ exercises: newExercises, shouldSync: true }));
+        yield put(batchAddExercises({ exercises: newExercises, debtUpdatedDate, shouldSync: true }));
       }
       // Måste testa en som saknas loaklt men finns remote
     }

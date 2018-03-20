@@ -32,6 +32,7 @@ export const databaseSynced = createAction(ACTIONS.DATABASE_SYNCED, {});
 
 export const batchAddExercises = createAction(ACTIONS.BATCH_ADD_EXERCISES, {
   exercises: {},
+  debtUpdatedDate: false,
   shouldSync: false,
 });
 

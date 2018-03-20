@@ -25,12 +25,12 @@ export function* syncToDatabase() {
   }
 
   // yield console.log('saving to db', uid, exercises);
-  const params = { uid, exercises };
+  const data = { uid, exercises };
   if (debtUpdatedDate) {
-    params.debtUpdatedDate = debtUpdatedDate;
+    data.debtUpdatedDate = debtUpdatedDate;
   }
 
-  const { err } = yield tryCatchSaga(() => fs.setUserExercises(params));
+  const { err } = yield tryCatchSaga(() => fs.setUserExercises(data));
 
   if (err) {
     // put it on the state to show in a thing

@@ -17,7 +17,6 @@ const initializeStoreSubscriptions = (store) => {
   });
 
   const periodicalUpdate = () => {
-    console.log('periodicalUpdate');
     const oldDeptDate = selectDebtUpdatedDate(store.getState());
     if (!oldDeptDate || isBefore(oldDeptDate, new Date(), 'day')) {
       store.dispatch(newDayArrived({}));
@@ -28,7 +27,7 @@ const initializeStoreSubscriptions = (store) => {
   // TODO: Make this dependant on the previous one so there is a uid
   // Or update the updateddates of all. but that seems dumb.
   // Or place the debtdate on exercises. More work though.
-  // periodicalUpdate();
+  // periodicalUpdate(); <--
 };
 
 async function renderApp() {

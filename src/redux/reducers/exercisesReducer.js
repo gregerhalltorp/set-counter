@@ -70,6 +70,7 @@ export default (state = initialState, action) => {
         lastUpdatedDate: new Date(),
         isSynced: !action.data.shouldSync,
         exercises: action.data.exercises,
+        debtUpdatedDate: action.data.debtUpdatedDate,
       };
     case ACTIONS.NEW_DAY_ARRIVED:
       return newDayArrivedFunction(state);
