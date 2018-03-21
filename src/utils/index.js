@@ -4,3 +4,5 @@ export const dateReviver = (key, value) =>
 export const byPropKey = (propertyName, value) => () => ({
   [propertyName]: value,
 });
+
+export * from './mapSelectorsToProps';

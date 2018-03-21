@@ -1,9 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import Counter from '../Counter/Counter.jsx';
 import * as ROUTES from '../../constants/routes';
 import './Exercise.css';
+
+const propTypes = {
+  exerciseId: PropTypes.string.isRequired,
+  updater: PropTypes.func.isRequired,
+};
 
 const Exercise = ({ exerciseId, updater }) => (
   <div className="sc-exercise">
@@ -24,5 +30,7 @@ const Exercise = ({ exerciseId, updater }) => (
     </Link>
   </div>
 );
+
+Exercise.propTypes = propTypes;
 
 export default Exercise;
