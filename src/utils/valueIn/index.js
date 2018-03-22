@@ -15,7 +15,7 @@ const toArr = (path) => {
   return [];
 };
 
-const valueIn = (target, path) => {
+export const valueIn = (target, path) => {
   const pathArr = toArr(path);
 
   if (typeof target === 'undefined' || target === null) {

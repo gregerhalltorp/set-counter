@@ -18,12 +18,20 @@ import { selectExercisesSynced } from '../redux/selectors/exercisesSelectors';
 
 const propTypes = {
   user: PropTypes.oneOfType([PropTypes.shape({}), PropTypes.bool]),
+  isSynced: PropTypes.bool,
 };
 
 const defaultProps = {
   user: null,
+  isSynced: false,
 };
 
+const siPT = {
+  isSynced: PropTypes.bool,
+};
+const siDP = {
+  isSynced: false,
+};
 const SyncedIndicator = ({ isSynced }) =>
   (isSynced ? (
     <div className="sc-body__syncindicator sc-body__syncindicator--synced" />
@@ -31,6 +39,8 @@ const SyncedIndicator = ({ isSynced }) =>
     <div className="sc-body__syncindicator sc-body__syncindicator--not-synced" />
   ));
 
+SyncedIndicator.propTypes = siPT;
+SyncedIndicator.defaultProps = siDP;
 // <BrowserRouter basename="/repo-name" />
 
 const AppHandlerDumb = ({ user, isSynced }) => {

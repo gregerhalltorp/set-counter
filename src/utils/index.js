@@ -7,3 +7,5 @@ export const byPropKey = (propertyName, value) => () => ({
 
 export * from './mapSelectorsToProps';
 export * from './connect';
+export * from './valueIn';
+export * from './dates';

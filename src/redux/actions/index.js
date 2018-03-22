@@ -37,3 +37,5 @@ export const batchAddExercises = createAction(ACTIONS.BATCH_ADD_EXERCISES, {
 });
 
 export const newDayArrived = createAction(ACTIONS.NEW_DAY_ARRIVED, {});
+
+export const databaseUserUpdated = createAction(ACTIONS.DB_USER_UPDATED, { user: {} });

@@ -56,3 +56,7 @@ Indicate syncing?
 
 
 
+AddSet        AuthStateChanged
+  |                 |
+  v                 v
+LocalStorage -> Sync with DB

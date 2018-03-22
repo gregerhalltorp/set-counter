@@ -1,16 +1,13 @@
-const yearCompare = (dateA, dateB) => dateA.getUTCFullYear() < dateB.getUTCFullYear();
+const yearCompare = (dateA, dateB) => dateA.getFullYear() < dateB.getFullYear();
 
 const monthCompare = (dateA, dateB) =>
-  (dateA.getUTCFullYear() === dateB.getUTCFullYear()
-    ? dateA.getUTCMonth() < dateB.getUTCMonth()
+  (dateA.getFullYear() === dateB.getFullYear()
+    ? dateA.getMonth() < dateB.getMonth()
     : yearCompare(dateA, dateB));
 
 const dayCompare = (dateA, dateB) => {
-  if (
-    dateA.getUTCFullYear() === dateB.getUTCFullYear() &&
-    dateA.getUTCMonth() === dateB.getUTCMonth()
-  ) {
-    return dateA.getUTCDate() < dateB.getUTCDate();
+  if (dateA.getFullYear() === dateB.getFullYear() && dateA.getMonth() === dateB.getMonth()) {
+    return dateA.getDate() < dateB.getDate();
   }
   return monthCompare(dateA, dateB);
 };

@@ -3,17 +3,26 @@ import React from 'react';
 import { render } from 'react-dom';
 
 import './index.css';
-import { firebase } from './firebase';
+import { firebase, fs } from './firebase';
 import makeStore from './redux/store/';
 import Root from './components/Root.jsx';
 import registerServiceWorker from './registerServiceWorker';
-import { authStateChanged, newDayArrived } from './redux/actions';
-import { isBefore } from './utils/dates';
+import { authStateChanged, newDayArrived, databaseUserUpdated } from './redux/actions';
+import { isBefore, valueIn } from './utils';
 import { selectDebtUpdatedDate } from './redux/selectors/exercisesSelectors';
 
 const initializeStoreSubscriptions = (store) => {
   firebase.auth.onAuthStateChanged((authUser) => {
     store.dispatch(authStateChanged({ authUser: authUser || false }));
+    const uid = valueIn(authUser, 'uid');
+    if (uid) {
+      // Unssubscribe otherwise, I suppose...
+      fs.subscribeToUser(uid, (doc) => {
+        if (!doc.metadata.hasPendingWrites) {
+          store.dispatch(databaseUserUpdated({ user: doc.data() }));
+        }
+      });
+    }
   });
 
   const periodicalUpdate = () => {
