@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
+import { connect } from '../utils';
 import * as ROUTES from '../constants/routes';
 import * as PARAMS from '../constants/params';
 import Header from '../components/Header/Header.jsx';
@@ -85,9 +85,7 @@ const AppHandlerDumb = ({ user, isSynced }) => {
 AppHandlerDumb.propTypes = propTypes;
 AppHandlerDumb.defaultProps = defaultProps;
 
-const mapStateToProps = state => ({
-  user: selectUser(state),
-  isSynced: selectExercisesSynced(state),
-});
-
-export default connect(mapStateToProps)(AppHandlerDumb);
+export default connect({
+  user: selectUser,
+  isSynced: selectExercisesSynced,
+})(AppHandlerDumb);

@@ -1,7 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import { connect } from '../../utils';
 import Navigation from '../Navigation/Navigation.jsx';
 import Greeting from './_Greeting.jsx';
 import { selectUser } from '../../redux/selectors/appSelectors';
@@ -32,8 +32,6 @@ const HeaderDumb = ({ user }) => {
 HeaderDumb.propTypes = propTypes;
 HeaderDumb.defaultProps = defaultProps;
 
-const mapStateToProps = state => ({
-  user: selectUser(state),
-});
-
-export default connect(mapStateToProps)(HeaderDumb);
+export default connect({
+  user: selectUser,
+})(HeaderDumb);

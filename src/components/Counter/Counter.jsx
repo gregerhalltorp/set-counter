@@ -1,7 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import { connect } from '../../utils';
 import { selectTodaysSets, selectExercise } from '../../redux/selectors/exercisesSelectors';
 import './Counter.css';
 
@@ -38,9 +38,7 @@ const CounterDumb = ({ exercise, updater, todaysSets }) => {
 CounterDumb.propTypes = propTypes;
 CounterDumb.defaultProps = defaultProps;
 
-const mapStateToProps = (state, props) => ({
-  exercise: selectExercise(state, props),
-  todaysSets: selectTodaysSets(state, props),
-});
-
-export default connect(mapStateToProps)(CounterDumb);
+export default connect({
+  exercise: selectExercise,
+  todaysSets: selectTodaysSets,
+})(CounterDumb);

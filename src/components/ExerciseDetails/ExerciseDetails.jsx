@@ -1,12 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import * as ROUTES from '../../constants/routes';
 import './ExerciseDetails.css';
 import { selectTotalSetsReps, selectExercise } from '../../redux/selectors/exercisesSelectors';
-import { mapSelectorsToProps } from '../../utils';
+import { mapSelectorsToProps, connect } from '../../utils';
 
 const propTypes = {
   sr: PropTypes.shape({}).isRequired,

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { compose } from 'recompose';
+import { compose } from 'redux';
 
+import { connect } from '../../utils';
 import { doLogout } from '../../redux/actions';
 
 const propTypes = {
@@ -33,6 +33,6 @@ const LogOutButtonDumb = ({ dispatch, history }) => (
 );
 LogOutButtonDumb.propTypes = propTypes;
 
-export const LogOutButton = compose(connect(), withRouter)(LogOutButtonDumb);
+export const LogOutButton = compose(connect({}), withRouter)(LogOutButtonDumb);
 
-export default compose(connect(), withRouter)(LogOutDumb);
+export default compose(connect({}), withRouter)(LogOutDumb);

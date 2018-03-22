@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { compose } from 'recompose';
+import { compose } from 'redux';
 
+import { connect } from '../../utils';
 import LogInForm from './_LoginForm.jsx';
 import { selectLoginError } from '../../redux/selectors/appSelectors';
 
@@ -29,9 +29,5 @@ const LogInDumb = ({ history, dispatch, loginError }) => {
 LogInDumb.propTypes = propTypes;
 LogInDumb.defaultProps = defaultProps;
 
-const mapStateToProps = state => ({
-  loginError: selectLoginError(state),
-});
-
 // This separation makes no sense!
-export default compose(connect(mapStateToProps), withRouter)(LogInDumb);
+export default compose(connect({ loginError: selectLoginError }), withRouter)(LogInDumb);

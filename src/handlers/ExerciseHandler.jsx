@@ -1,7 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import { connect } from '../utils';
 import { updateExercise } from '../redux/actions';
 import { selectExercises } from '../redux/selectors/exercisesSelectors';
 import Exercise from '../components/Exercise/Exercise.jsx';
@@ -28,8 +28,4 @@ const ExerciseHandlerDumb = ({ dispatch, exercises }) => {
 ExerciseHandlerDumb.defaultProps = defaultProps;
 ExerciseHandlerDumb.propTypes = propTypes;
 
-const mapStateToProps = state => ({
-  exercises: selectExercises(state),
-});
-
-export default connect(mapStateToProps)(ExerciseHandlerDumb);
+export default connect({ exercises: selectExercises })(ExerciseHandlerDumb);

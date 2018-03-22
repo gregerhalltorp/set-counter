@@ -6,3 +6,4 @@ export const byPropKey = (propertyName, value) => () => ({
 });
 
 export * from './mapSelectorsToProps';
+export * from './connect';
